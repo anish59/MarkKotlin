@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         registerListener()
-
     }
 
     private fun registerListener() {
@@ -33,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         CoroutineScope(IO).launch {
             getDummyResultFromApi()
+            setText()
         }
     }
 
@@ -42,9 +42,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private suspend fun setText() {
-        withContext(Main) {
+        withContext(Main){
             txt.text = "${txt.text} \n hello"
         }
-
     }
 }
